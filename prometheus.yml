@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Monitoreo de Prometheus mismo
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Monitoreo de tus microservicios
+  - job_name: "usuarios-service"
+    static_configs:
+      - targets: ["usuarios-service:9100"]
+
+  # Agrega aquí tus otros microservicios
+  - job_name: "otro-microservicio"
+    static_configs:
+      - targets: ["otro-microservicio:8080"]
+    scrape_interval: 30s
+    metrics_path: "/actuator/prometheus" # Para Spring Boot con actuator
