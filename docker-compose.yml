@@ -35,15 +35,6 @@ services:
     networks:
       - monitoring
 
-  # Microservicio de ejemplo (simula tu microservicio de usuarios)
-  usuarios-service:
-    image: prom/node-exporter:latest
-    container_name: usuarios-service
-    ports:
-      - "9100:9100"
-    networks:
-      - monitoring
-
 networks:
   monitoring:
     driver: bridge
